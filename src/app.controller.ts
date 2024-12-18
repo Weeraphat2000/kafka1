@@ -14,7 +14,6 @@ import { AppService } from './app.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat, UpdateCatDto } from './schemas/cat.schemas';
 import { isValidObjectId, Model } from 'mongoose';
-import { log } from 'console';
 import { ClientKafka } from '@nestjs/microservices';
 
 @Controller()
@@ -60,7 +59,7 @@ export class AppController {
     }
 
     const cat = await this.catModel.findById(id);
-    log('cat', cat);
+
     if (!cat) {
       throw new NotFoundException('Cat not found');
     }
@@ -81,6 +80,9 @@ export class AppController {
     }
 
     await cat.deleteOne();
+    // return {
+    //   message: 'Cat deleted',
+    // };
     return cat;
 
     // if (!isValidObjectId(id)) {
