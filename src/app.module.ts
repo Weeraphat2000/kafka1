@@ -20,12 +20,13 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: 'cat',
+            clientId: 'cat', // เพื่อเอาไว้ดู log ใน Kafka ง่ายขึ้น ว่าเป็น client ไหน
             brokers: ['localhost:9092'],
           },
-          consumer: {
-            groupId: 'cat-consumer',
-          },
+          // consumer คือ บ่งบอกว่าเราจะใช้ Kafka ในการรับข้อมูล (ฝั่ง consumer)
+          // consumer: {
+          //   groupId: 'cat-consumer',
+          // },
         },
       },
     ]),
